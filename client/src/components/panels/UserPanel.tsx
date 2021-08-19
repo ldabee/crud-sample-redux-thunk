@@ -40,13 +40,7 @@ const UserPanel: React.FC<Props> = ({ ClosePanel, isOpen, isEdit, isEditCallBack
   const usersState: IUsers = useSelector((state: UserState) => state.users)
   const { AddUser, UpdateUser, SetCurrentUser } = bindActionCreators(users, dispatch);
 
-  const [user, setUser] = useState<IUser>(
-    {
-      id: 0,
-      name: "",
-      email: "",
-      password: ""
-    } as IUser);
+  const [user, setUser] = useState<IUser>({} as IUser);
 
   const [seePassword, setSeePassword] = useState<boolean>(false);
 
@@ -93,7 +87,7 @@ const UserPanel: React.FC<Props> = ({ ClosePanel, isOpen, isEdit, isEditCallBack
                   required
                   id="standard-basic"
                   label="Name"
-                  value={user.name}
+                  value={user?.name || ''}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setUser({ ...user, name: e.target.value })
                   }
@@ -104,7 +98,7 @@ const UserPanel: React.FC<Props> = ({ ClosePanel, isOpen, isEdit, isEditCallBack
                   required
                   id="standard-basic"
                   label="Email"
-                  value={user.email}
+                  value={user?.email || ''}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setUser({ ...user, email: e.target.value })
                   }
@@ -127,7 +121,7 @@ const UserPanel: React.FC<Props> = ({ ClosePanel, isOpen, isEdit, isEditCallBack
                     id="standard-basic"
                     label="Password"
                     type="password"
-                    value={user.password}
+                    value={user?.password || ''}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setUser({ ...user, password: e.target.value })
                     }

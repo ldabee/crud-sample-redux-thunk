@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as users from './state/action-creators/UsersActionCreators';
 import { UserState } from './state/reducers'
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IUser, IUsers } from './models/IUsers';
 import MaterialTable from "material-table";
 import UserPanel from './components/panels/UserPanel';
@@ -11,7 +11,7 @@ import UserPanel from './components/panels/UserPanel';
 function App() {
   const dispatch = useDispatch();
   const usersState: IUsers = useSelector((state: UserState) => state.users)
-  const { DeleteUser, GetAllUsers, UpdateUser, SetCurrentUser } = bindActionCreators(users, dispatch);
+  const { DeleteUser, GetAllUsers, SetCurrentUser } = bindActionCreators(users, dispatch);
 
   const [openPanel, setOpenPanel] = useState<boolean>(false);
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -26,8 +26,9 @@ function App() {
   }
 
   useEffect(() => {
-    GetAllUsers();
-  }, [])
+    GetAllUsers()
+  }, []);
+
   return (
     <>
       <h1 style={{ textAlign: "center" }}>CRUD Express/SQLite/Redux Thunk</h1>

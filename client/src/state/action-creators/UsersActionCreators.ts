@@ -6,7 +6,6 @@ import { UserAction } from "../actions/UsersActions";
 
 export const GetAllUsers = () => async (dispatch: Dispatch<UserAction>) => {
   dispatch({ type: UsersActionType.GETALL_STARTED });
-
   try {
     const users = await UsersServices.getAll();
     dispatch({ type: UsersActionType.GETALL_SUCCESS, users: users });
