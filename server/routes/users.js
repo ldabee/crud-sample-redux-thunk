@@ -40,7 +40,7 @@ users.get('/getAll', (req, res) => {
   .post('/insert', (req, res) => {
     let query = "INSERT INTO user (name,email,password) VALUES(?,?,?)"
     let query2 = "SELECT * FROM user"
-    let params = [req.body.name, req.body.email, req.body.password]
+    let params = [req.body.name, req.body.email, req.body.password !== null ? md5(req.body.password) : ""]
     connection.run(query, params, (err, result) => {
       if (err) {
         res.status(400).json({ "error": err.message });
