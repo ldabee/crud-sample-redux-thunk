@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as users from './state/action-creators/UsersActionCreators';
 import { UserState } from './state/reducers'
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IUser, IUsers } from './models/IUsers';
 import MaterialTable from "material-table";
 import UserPanel from './components/panels/UserPanel';
